@@ -1,5 +1,6 @@
 ---
 import { AstroFont } from "astro-font";
+import Header from "../components/Header.astro";
 
 interface Props {
   title: string;
@@ -30,18 +31,37 @@ const { title } = Astro.props;
           selector: "html",
           fallback: "sans-serif",
         },
+        {
+          src: [],
+          name: "Open Sans",
+          googleFontsURL:
+            "https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap",
+          preload: true,
+          display: "swap",
+          selector: "html",
+          fallback: "sans-serif",
+        },
       ]}
     />
   </head>
   <body>
+    <Header />
     <slot />
     <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
       :root {
       }
 
       html {
         font-family: "Rubik", sans-serif;
-        background: #13151b;
+        background: rgb(33, 36, 46);
         color: #ffffff;
       }
     </style>
