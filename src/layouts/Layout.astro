@@ -41,11 +41,21 @@ const { title } = Astro.props;
           selector: "html",
           fallback: "sans-serif",
         },
+        {
+          src: [],
+          name: "Poppins",
+          googleFontsURL:
+            "https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap",
+          preload: true,
+          display: "swap",
+          selector: "html",
+          fallback: "sans-serif",
+        },
       ]}
     />
   </head>
   <body>
-    <Header />
+    <!-- <Header /> -->
     <slot />
     <style is:global>
       *,
@@ -61,7 +71,7 @@ const { title } = Astro.props;
 
       html {
         font-family: "Rubik", sans-serif;
-        background: rgb(33, 36, 46);
+        background: rgb(29, 29, 34);
         color: #ffffff;
       }
     </style>
