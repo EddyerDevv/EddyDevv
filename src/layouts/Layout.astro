@@ -10,7 +10,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -55,7 +55,7 @@ const { title } = Astro.props;
     />
   </head>
   <body>
-    <!-- <Header /> -->
+    <Header />
     <slot />
     <style is:global>
       *,
@@ -67,12 +67,17 @@ const { title } = Astro.props;
       }
 
       :root {
+        --text-accent: rgb(33, 186, 114);
+        --text-primary: rgb(255, 255, 255);
+
+        --header-spacer-color: rgb(255, 255, 255, 0.1);
+        --header-link-color: rgb(181 196 189);
       }
 
       html {
         font-family: "Rubik", sans-serif;
-        background: rgb(29, 29, 34);
-        color: #ffffff;
+        background: rgb(5, 10, 8);
+        color: var(--text-primary);
       }
     </style>
   </body>
