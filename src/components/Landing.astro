@@ -1,0 +1,155 @@
+---
+
+---
+
+<main id="app_landing">
+  <section class="principal">
+    <p class="welcome" id="welcome">Welcome visitor...</p>
+    <p class="content">
+      I'm Eddy<span class="resalted">Devv</span>
+    </p>
+    <p class="message">
+      +1 year of experience.
+      <span class="resalted">
+        Full-Stack Developer and Software Engineer.
+      </span> from Managua, Nicaragua. Creating unique and escalable proyects with
+      <span class="resalted">high quality</span>.
+    </p>
+    <div class="actions">
+      <a class="action" target="_blank" href="mailto:eddy.devv.og@gmail.com">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+          ></path><path d="M3 7l9 6l9 -6"></path></svg
+        >
+        <span class="text">Contact me</span>
+      </a>
+      <a class="action" target="_blank" href="https://github.com/EddyerDevv">
+        <svg
+          viewBox="0 0 256 250"
+          width="256"
+          height="250"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon small"
+        >
+          <path
+            d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46 6.397 1.185 8.746-2.777 8.746-6.158 0-3.052-.12-13.135-.174-23.83-35.61 7.742-43.124-15.103-43.124-15.103-5.823-14.795-14.213-18.73-14.213-18.73-11.613-7.944.876-7.78.876-7.78 12.853.902 19.621 13.19 19.621 13.19 11.417 19.568 29.945 13.911 37.249 10.64 1.149-8.272 4.466-13.92 8.127-17.116-28.431-3.236-58.318-14.212-58.318-63.258 0-13.975 5-25.394 13.188-34.358-1.329-3.224-5.71-16.242 1.24-33.874 0 0 10.749-3.44 35.21 13.121 10.21-2.836 21.16-4.258 32.038-4.307 10.878.049 21.837 1.47 32.066 4.307 24.431-16.56 35.165-13.12 35.165-13.12 6.967 17.63 2.584 30.65 1.255 33.873 8.207 8.964 13.173 20.383 13.173 34.358 0 49.163-29.944 59.988-58.447 63.157 4.591 3.972 8.682 11.762 8.682 23.704 0 17.126-.148 30.91-.148 35.126 0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002 256 57.307 198.691 0 128.001 0Zm-80.06 182.34c-.282.636-1.283.827-2.194.39-.929-.417-1.45-1.284-1.15-1.922.276-.655 1.279-.838 2.205-.399.93.418 1.46 1.293 1.139 1.931Zm6.296 5.618c-.61.566-1.804.303-2.614-.591-.837-.892-.994-2.086-.375-2.66.63-.566 1.787-.301 2.626.591.838.903 1 2.088.363 2.66Zm4.32 7.188c-.785.545-2.067.034-2.86-1.104-.784-1.138-.784-2.503.017-3.05.795-.547 2.058-.055 2.861 1.075.782 1.157.782 2.522-.019 3.08Zm7.304 8.325c-.701.774-2.196.566-3.29-.49-1.119-1.032-1.43-2.496-.726-3.27.71-.776 2.213-.558 3.315.49 1.11 1.03 1.45 2.505.701 3.27Zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033-1.448-.439-2.395-1.613-2.103-2.626.301-1.01 1.747-1.484 3.207-1.028 1.446.436 2.396 1.602 2.095 2.622Zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95-1.53.034-2.769-.82-2.786-1.86 0-1.065 1.202-1.932 2.733-1.958 1.522-.03 2.768.818 2.768 1.868Zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37-1.485.271-2.861-.365-3.05-1.386-.184-1.056.893-2.114 2.376-2.387 1.514-.263 2.868.356 3.061 1.403Z"
+          ></path>
+        </svg>
+        <span class="text">Github</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<style>
+  #app_landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+    padding: 0 1.5rem;
+  }
+
+  #app_landing > .principal {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 45rem;
+    width: 100%;
+  }
+
+  #app_landing > .principal > .welcome {
+    font-size: 1.025rem;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+    color: rgb(157, 250, 183);
+    line-height: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.2rem;
+    position: relative;
+    min-height: 1rem;
+  }
+
+  #app_landing > .principal > .content {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: "Rubik", sans-serif;
+    color: rgb(255, 255, 255);
+  }
+
+  #app_landing > .principal > .message {
+    margin-top: 0.4rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: "Rubik", sans-serif;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 35rem;
+  }
+
+  #app_landing > .principal > .message > .resalted {
+    font-weight: 500;
+  }
+
+  #app_landing > .principal > .content > .resalted,
+  #app_landing > .principal > .message > .resalted {
+    color: var(--text-accent);
+  }
+
+  #app_landing > .principal > .actions {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  #app_landing > .principal > .actions > .action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 0.4rem 1.3rem;
+    background-color: rgb(16, 57, 39);
+    border: solid 0.1rem rgb(64, 255, 128);
+    border-radius: 50px;
+    min-height: 2.25rem;
+  }
+
+  #app_landing > .principal > .actions > .action > .icon {
+    width: 1.325rem;
+    height: 1.325rem;
+  }
+
+  #app_landing > .principal > .actions > .action > .icon.small {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  #app_landing > .principal > .actions > .action > .text {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Rubik", sans-serif;
+  }
+</style>
