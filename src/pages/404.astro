@@ -31,8 +31,12 @@ import Layout from "../layouts/Layout.astro";
         The page you are looking for does not exist, what will you do now?
       </h2>
       <div class="actions">
-        <button class="btn" id="btn_go_back">Go back</button>
-        <button class="btn accent" id="btn_retry">Retry</button>
+        <button class="btn" onclick="history.back()" id="btn_go_back"
+          >Go back</button
+        >
+        <button class="btn accent" onclick="location.reload()" id="btn_retry"
+          >Retry</button
+        >
       </div>
     </section>
   </main>
@@ -136,18 +140,3 @@ import Layout from "../layouts/Layout.astro";
     color: rgb(255, 255, 255);
   }
 </style>
-
-<script>
-  const btnGoBack = document.getElementById("btn_go_back");
-  const btnRetry = document.getElementById("btn_retry");
-
-  if (btnGoBack && btnRetry) {
-    btnGoBack.addEventListener("click", () => {
-      window.history.back();
-    });
-
-    btnRetry.addEventListener("click", () => {
-      window.location.reload();
-    });
-  }
-</script>
