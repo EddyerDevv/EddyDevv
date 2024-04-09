@@ -45,10 +45,11 @@ import Image from "astro/components/Image.astro";
       <div class="container">
         <Image
           class="img"
-          src={"/me.jpg"}
+          src={"/me.webp"}
           alt="Photo of me"
           width="200"
           height="200"
+          loading={"lazy"}
         />
       </div>
     </figure>
