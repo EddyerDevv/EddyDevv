@@ -19,8 +19,13 @@ function Header() {
     }
 
     function handleResize() {
-      if (isMobile && activeMenu && window.innerWidth >= 780)
+      if (isMobile && activeMenu && window.innerWidth >= 780) {
         setActiveMenu(false);
+        const $html = document.querySelector("html");
+        if (!($html instanceof HTMLElement)) return;
+
+        $html.style.overflow = "auto";
+      }
       setIsMobile(window.innerWidth <= 780);
     }
 
@@ -43,10 +48,10 @@ function Header() {
 
     if (isAnimatingMenu) return;
     document.addEventListener("mousemove", onMove);
-    document.addEventListener("touchmove", onMove);
-
     document.addEventListener("mouseup", onEnd);
-    document.addEventListener("touchend", onEnd);
+
+    document.addEventListener("touchmove", onMove, { passive: true });
+    document.addEventListener("touchend", onEnd, { passive: true });
 
     function onMove(e: any) {
       const currentY = e.pageY ?? e.touches[0].pageY;
@@ -82,8 +87,9 @@ function Header() {
       if (!($appMenuClose instanceof HTMLDivElement)) return;
 
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("touchmove", onMove);
       document.removeEventListener("mouseup", onEnd);
+
+      document.removeEventListener("touchmove", onMove);
       document.removeEventListener("touchend", onEnd);
 
       $appMenu.style.transition = "transform 0.2s cubic-bezier(.32,.72,0,1)";
@@ -113,12 +119,23 @@ function Header() {
   };
 
   const buttonMenuHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const $html = document.querySelector("html");
+    if (!($html instanceof HTMLElement)) return;
+
     e.preventDefault();
     setActiveMenu(!activeMenu);
+
+    $html.style.overflow = "hidden";
   };
 
   const onCloseMenu = (e: React.MouseEvent<HTMLElement>) => {
+    const $html = document.querySelector("html");
+    if (!($html instanceof HTMLElement)) return;
+
+    $html.style.overflow = "auto";
+
     if (isAnimatingMenu) return;
+
     setIsAnimatingMenu(true);
     e.preventDefault();
 
@@ -145,9 +162,11 @@ function Header() {
   useEffect(() => {
     const $appMenu = document.querySelector("#app_menu");
     const $appMenuClose = document.querySelector("#app_close_menu");
+    const $html = document.querySelector("html");
 
     if (!($appMenu instanceof HTMLElement)) return;
     if (!($appMenuClose instanceof HTMLDivElement)) return;
+    if (!($html instanceof HTMLElement)) return;
 
     if (activeMenu) {
       $appMenu.classList.add("open");
