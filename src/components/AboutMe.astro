@@ -1,0 +1,163 @@
+---
+import Image from "astro/components/Image.astro";
+---
+
+<main id="app_about">
+  <header class="header">
+    <span class="text">About Me</span>
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path
+        d="M6 21v-2a4 4 0 0 1 4 -4h4"></path><path d="M15 19l2 2l4 -4"
+      ></path></svg
+    >
+  </header>
+  <section id="about">
+    <div class="content">
+      <p class="text">
+        My name is <span class="resalted">Eddyer Morales</span>, sometimes he
+        calls me eddy. I started learning programming at home, when I was 12
+        years old. <span class="resalted"
+          >At the moment I am reinforcing my knowledge and learning more</span
+        >.
+      </p>
+      <p class="text">
+        It has created innovative projects, such as <span class="resalted"
+          >artificial intelligence chat, Discord bots and web applications</span
+        >. It's really a good start.
+      </p>
+      <p class="text">
+        Well currently I have a goal and that is to be a <span class="resalted"
+          >good developer and be the best in my school</span
+        >, and at the same time create good and quality projects.
+      </p>
+    </div>
+    <figure class="image">
+      <div class="container">
+        <Image
+          class="img"
+          src={"/me.jpg"}
+          alt="Photo of me"
+          width="200"
+          height="200"
+        />
+      </div>
+    </figure>
+  </section>
+
+  <style>
+    #app_about {
+      margin-top: 5.6rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.65rem;
+      user-select: none;
+      padding: 0 2rem;
+      margin-bottom: 5.6rem;
+    }
+
+    #app_about > .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    #app_about > .header > .text {
+      font-size: 2.5rem;
+      font-family: "Rubik", sans-serif;
+      font-weight: 500;
+    }
+
+    #app_about > .header > .icon {
+      width: 2.7rem;
+      height: 2.7rem;
+      color: var(--text-accent);
+    }
+
+    #app_about > #about {
+      margin-top: 3rem;
+      flex-direction: row;
+      width: 100%;
+      max-width: 60rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    #app_about > #about > .content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0.8rem;
+      max-width: 37rem;
+    }
+
+    #app_about > #about > .content > .text {
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-family: "Rubik", sans-serif;
+      color: rgb(255, 255, 255);
+    }
+
+    #app_about > #about > .content > .text > .resalted {
+      font-weight: 500;
+      color: var(--text-accent);
+    }
+
+    #app_about > #about > .image {
+      width: 100%;
+      max-width: 15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #app_about > #about > .image > .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: #011007;
+      border: solid 0.1rem rgb(64, 255, 128);
+      object-fit: cover;
+      border-radius: 1rem;
+      transform: rotate(3deg);
+    }
+
+    #app_about > #about > .image > .container > .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.8rem;
+    }
+
+    @media screen and (max-width: 1080px) {
+      #app_about > #about > .content {
+        max-width: 28rem;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      #app_about > #about {
+        flex-direction: column-reverse;
+        gap: 4rem;
+      }
+    }
+  </style>
+</main>
