@@ -13,11 +13,11 @@ function Landing() {
           I'm Eddy<span className="resalted">Devv</span>
         </p>
         <p className="message">
-          +1 year of experience.
+          +1 year of experience.{" "}
           <span className="resalted">
             Full-Stack Developer and Software Engineer.
           </span>{" "}
-          from Managua, Nicaragua. Creating unique and escalable proyects with
+          from Managua, Nicaragua. Creating unique and escalable proyects with{" "}
           <span className="resalted">high quality</span>.
         </p>
         <div className="actions">
