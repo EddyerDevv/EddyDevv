@@ -71,9 +71,9 @@
       </a>
     </nav>
   </section>
-  <section class="reds">
+  <section class="others">
     <a
-      class="red"
+      class="act"
       title="GitHub"
       href="https://github.com/EddyerDevv/EddyDevv"
       target="_blank"
@@ -91,6 +91,22 @@
         ></path>
       </svg>
     </a>
+    <button class="btn accent menu">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M4 6l16 0"></path><path d="M4 12l16 0"></path><path d="M4 18l16 0"
+        ></path></svg
+      >
+    </button>
   </section>
 </header>
 
@@ -99,7 +115,7 @@
     width: 100%;
     height: 4.25rem;
     position: fixed;
-    top: 0;
+    top: 4.25rem;
     z-index: 100;
     display: flex;
     align-items: center;
@@ -193,31 +209,67 @@
     font-family: "Rubik", sans-serif;
   }
 
-  #app_header > .reds {
+  #app_header > .others {
     height: 100%;
     display: flex;
     align-items: center;
     gap: 1rem;
   }
 
-  #app_header > .reds > .red {
+  #app_header > .others > .act,
+  #app_header > .others > .btn {
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 
-  #app_header > .reds > .red > .icon {
+  #app_header > .others > .btn.menu {
+    display: none;
+  }
+
+  #app_header > .others > .act > .icon,
+  #app_header > .others > .btn > .icon {
     width: 1.375rem;
     height: 1.375rem;
     color: var(--header-link-color);
     transition: color 0.15s ease;
   }
 
-  #app_header > .reds > .red:hover > .icon {
+  #app_header > .others > .act:hover > .icon,
+  #app_header > .others > .btn:hover > .icon {
     color: var(--text-accent);
   }
+
+  #app_header > .others > .btn.accent > .icon {
+    color: var(--header-action-text-color);
+  }
+
+  #app_header > .others > .btn.accent:hover > .icon {
+    color: var(--header-action-text-color);
+  }
+
+  #app_header > .others > .btn.accent {
+    background-color: var(--header-action-background-color);
+    color: var(--header-action-text-color);
+    border: 0.1rem solid var(--header-action-color);
+    border-radius: 50px;
+    padding: 0.45rem;
+  }
+
+  /* @media screen and (max-width: 780px) {
+    #app_header > .principal > .spacer,
+    #app_header > .principal > .navigate {
+      display: none;
+    }
+
+    #app_header > .others > .btn.menu {
+      display: flex;
+    }
+  } */
 
   @media screen and (max-width: 1040px) {
     #app_header {

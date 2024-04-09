@@ -1,0 +1,43 @@
+<div id="app_alert">
+  <p class="content">
+    I have some problems with astro and I don't feel so comfortable with it, so
+    the portfolio will be migrated to NextJS soon.
+  </p>
+</div>
+
+<style>
+  #app_alert {
+    width: 100%;
+    height: 4.25rem;
+    position: fixed;
+    top: 0rem;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8rem;
+    transition: padding 0.25s ease;
+    background-color: rgb(7, 27, 1);
+    border-bottom: solid 0.1rem rgb(64, 255, 128);
+  }
+
+  #app_alert > .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    user-select: none;
+    color: rgb(198, 222, 211);
+    font-family: "Rubik", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 1040px) {
+    #app_alert {
+      padding: 0 1.5rem;
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import { AstroFont } from "astro-font";
 import Header from "../components/Header.astro";
 import { ViewTransitions } from "astro:transitions";
 import Footer from "../components/Footer.astro";
+import Alert from "../components/Alert.astro";
 
 interface Props {
   title: string;
@@ -59,6 +60,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <Header />
+    <Alert />
     <slot />
     <Footer />
     <style is:global>
@@ -77,6 +79,9 @@ const { title } = Astro.props;
 
         --header-spacer-color: rgb(255, 255, 255, 0.1);
         --header-link-color: rgb(223, 223, 223);
+        --header-action-text-color: rgb(255, 255, 255);
+        --header-action-background-color: rgb(16, 57, 39);
+        --header-action-color: rgb(64, 255, 128);
 
         --landing-message-color: rgb(255, 255, 255);
         --landing-action-background-color: rgb(16, 57, 39);
