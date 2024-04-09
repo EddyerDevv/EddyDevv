@@ -2,6 +2,7 @@
 import { AstroFont } from "astro-font";
 import Header from "../components/Header.astro";
 import { ViewTransitions } from "astro:transitions";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -59,6 +60,7 @@ const { title } = Astro.props;
   <body>
     <Header />
     <slot />
+    <Footer />
     <style is:global>
       *,
       *::before,
@@ -74,7 +76,7 @@ const { title } = Astro.props;
         --text-primary: rgb(255, 255, 255);
 
         --header-spacer-color: rgb(255, 255, 255, 0.1);
-        --header-link-color: rgb(181 196 189);
+        --header-link-color: rgb(216, 240, 229);
 
         --landing-message-color: rgb(255, 255, 255);
       }
