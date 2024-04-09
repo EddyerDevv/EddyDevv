@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import skills from "../lib/skills";
+---
+
 <main id="app_skills">
   <header class="header">
     <span class="text">Skills & Tools</span>
@@ -17,7 +22,41 @@
     >
   </header>
   <section id="skills">
-    <div>Under development</div>
+    {
+      skills.map((skill) => {
+        return (
+          <article class="skill">
+            <div class="bg">
+              <Image
+                class="img"
+                src={skill.image}
+                alt={skill.name}
+                width={70}
+                height={70}
+              />
+            </div>
+
+            <header class="header">
+              <Image
+                class="img"
+                src={skill.image}
+                alt={skill.name}
+                width={70}
+                height={70}
+              />
+              <div class="info">
+                <span class="name">{skill.name}</span>
+                <span class="type">{skill.type}</span>
+              </div>
+            </header>
+
+            <div class="content">
+              <p class="description">{skill.description}</p>
+            </div>
+          </article>
+        );
+      })
+    }
   </section>
 </main>
 
@@ -31,6 +70,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 0.65rem;
+    user-select: none;
   }
 
   #app_skills > .header {
@@ -52,23 +92,118 @@
   }
 
   #app_skills > #skills {
+    margin-top: 3rem;
     width: 100%;
-    height: 100%;
-    display: grid;
-    gap: 0.5rem;
+    max-width: 54.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: center;
-    align-items: center;
-    justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    grid-template-rows: repeat(4, minmax(10rem, 1fr));
-    max-width: 55rem;
+    gap: 0.5rem;
   }
 
-  #app_skills > #skills > div {
-    border-radius: 0.5rem;
+  #app_skills > #skills > .skill {
+    width: 17.35rem;
+    height: 16.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 0.8rem;
+    background-color: #011007;
+    padding: 1rem;
+    transition: transform 0.2s ease;
+    position: relative;
+  }
+
+  #app_skills > #skills > .skill:hover {
+    transform: translateY(-0.2rem);
+  }
+
+  #app_skills > #skills > .skill > .bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  #app_skills > #skills > .skill > .bg > .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    filter: blur(2rem);
+  }
+
+  #app_skills > #skills > .skill > .bg::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #080908;
+    opacity: 0.65;
+    border-radius: 0.8rem;
+  }
+
+  #app_skills > #skills > .skill > .header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 1rem;
+    position: relative;
+    z-index: 5;
+  }
+
+  #app_skills > #skills > .skill > .header > .img {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 0.8rem;
+  }
+
+  #app_skills > #skills > .skill > .header > .info {
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  #app_skills > #skills > .skill > .header > .info > .name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
+
+  #app_skills > #skills > .skill > .header > .info > .type {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgb(180, 180, 180);
+  }
+
+  #app_skills > #skills > .skill > .content {
+    padding: 0.265rem;
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 5;
+  }
+
+  #app_skills > #skills > .skill > .content > .description {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    text-wrap: balance;
   }
 </style>
