@@ -1,0 +1,165 @@
+#app_header {
+  width: 100%;
+  height: 4.25rem;
+  position: fixed;
+  top: 4.25rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rem;
+  transition: padding 0.25s ease;
+}
+
+#app_header.scrolled {
+  backdrop-filter: blur(1.5rem);
+}
+
+#app_header > .principal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.4rem;
+  user-select: none;
+}
+
+#app_header > .principal > .logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#app_header > .principal > .logo > a {
+  text-decoration: none;
+  cursor: default;
+}
+
+#app_header > .principal > .logo > a > h1 {
+  font-size: 1.3rem;
+  font-family: "Rubik", sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+#app_header > .principal > .logo > a > h1 > span {
+  color: var(--text-accent);
+  font-family: var(--font-rubik);
+}
+
+#app_header > .principal > .spacer {
+  height: 48%;
+  width: 1px;
+  background-color: var(--header-spacer-color);
+  flex-shrink: 0;
+  transition: transform 0.15s ease-in-out;
+  transform: rotate(15deg);
+}
+
+#app_header:hover > .principal > .spacer {
+  transform: rotate(-15deg);
+}
+
+#app_header > .principal > .navigate {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+#app_header > .principal > .navigate > .link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.185rem;
+  cursor: pointer;
+  color: var(--header-link-color);
+  transition: color 0.15s ease;
+}
+
+#app_header > .principal > .navigate > .link:hover {
+  color: var(--text-accent);
+}
+
+#app_header > .principal > .navigate > .link > .icon {
+  width: 1.055rem;
+  height: 1.055rem;
+}
+
+#app_header > .principal > .navigate > .link > .text {
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: var(--font-rubik);
+}
+
+#app_header > .others {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#app_header > .others > .act,
+#app_header > .others > .btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+#app_header > .others > .btn.menu {
+  display: none;
+}
+
+#app_header > .others > .act > .icon,
+#app_header > .others > .btn > .icon {
+  width: 1.375rem;
+  height: 1.375rem;
+  color: var(--header-link-color);
+  transition: color 0.15s ease;
+}
+
+#app_header > .others > .act:hover > .icon,
+#app_header > .others > .btn:hover > .icon {
+  color: var(--text-accent);
+}
+
+#app_header > .others > .btn.accent > .icon {
+  color: var(--header-action-text-color);
+}
+
+#app_header > .others > .btn.accent:hover > .icon {
+  color: var(--header-action-text-color);
+}
+
+#app_header > .others > .btn.accent {
+  background-color: var(--header-action-background-color);
+  color: var(--header-action-text-color);
+  border: 0.1rem solid var(--header-action-color);
+  border-radius: 50px;
+  padding: 0.45rem;
+}
+
+/* @media screen and (max-width: 780px) {
+    #app_header > .principal > .spacer,
+    #app_header > .principal > .navigate {
+      display: none;
+    }
+
+    #app_header > .others > .btn.menu {
+      display: flex;
+    }
+  } */
+
+@media screen and (max-width: 1040px) {
+  #app_header {
+    padding: 0 1.5rem;
+  }
+}

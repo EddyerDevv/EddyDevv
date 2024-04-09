@@ -1,0 +1,106 @@
+#app_footer {
+  width: 100%;
+  margin-top: 2rem;
+  height: 4.5rem;
+  position: relative;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rem;
+  transition: padding 0.25s ease;
+}
+
+#app_footer.scrolled {
+  backdrop-filter: blur(1.5rem);
+}
+
+#app_footer > .principal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+#app_footer > .principal > .logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#app_footer > .principal > .logo > a {
+  text-decoration: none;
+  cursor: default;
+}
+
+#app_footer > .principal > .logo > a > h1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-rubik);
+}
+
+#app_footer > .principal > .logo > a > h1 > span {
+  color: var(--text-accent);
+  font-family: var(--font-rubik);
+}
+
+#app_footer > .principal > .spacer {
+  height: 0.3rem;
+  width: 0.3rem;
+  background-color: var(--header-spacer-color);
+  flex-shrink: 0;
+  transition: transform 0.15s ease-in-out;
+  border-radius: 50px;
+}
+
+#app_footer > .principal > .content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+#app_footer > .principal > .content > .copyright {
+  color: var(--footer-content-color);
+  font-family: var(--font-rubik);
+}
+
+#app_footer > .reds {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#app_footer > .reds > .red {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#app_footer > .reds > .red > .icon {
+  width: 1.375rem;
+  height: 1.375rem;
+  color: var(--header-link-color);
+  transition: color 0.15s ease;
+}
+
+#app_footer > .reds > .red:hover > .icon {
+  color: var(--text-accent);
+}
+
+@media screen and (max-width: 1040px) {
+  #app_footer {
+    padding: 0 1.5rem;
+  }
+}
