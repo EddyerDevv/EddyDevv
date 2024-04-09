@@ -111,7 +111,7 @@ import skills from "../lib/skills";
     align-items: flex-start;
     justify-content: flex-start;
     border-radius: 0.8rem;
-    background-color: #011007;
+    background-color: var(--skills-skill-background-color);
     padding: 1rem;
     transition: transform 0.2s ease;
     position: relative;
@@ -148,7 +148,7 @@ import skills from "../lib/skills";
     top: 0;
     left: 0;
     z-index: 2;
-    background-color: #080908;
+    background-color: var(--skills-skill-background-before-color);
     opacity: 0.65;
     border-radius: 0.8rem;
   }
@@ -180,14 +180,14 @@ import skills from "../lib/skills";
     font-size: 1.2rem;
     font-weight: 600;
     font-family: "Rubik", sans-serif;
-    color: rgb(255, 255, 255);
+    color: var(--skills-skill-name-color);
   }
 
   #app_skills > #skills > .skill > .header > .info > .type {
     font-size: 0.9rem;
     font-family: "Rubik", sans-serif;
     font-weight: 400;
-    color: rgb(180, 180, 180);
+    color: var(--skills-skill-type-color);
   }
 
   #app_skills > #skills > .skill > .content {
@@ -206,7 +206,7 @@ import skills from "../lib/skills";
     font-size: 0.95rem;
     font-weight: 400;
     font-family: "Rubik", sans-serif;
-    color: rgb(255, 255, 255);
+    color: var(--skills-skill-description-color);
     text-wrap: balance;
   }
 </style>
