@@ -21,10 +21,7 @@ function Header() {
     function handleResize() {
       if (isMobile && activeMenu && window.innerWidth >= 780) {
         setActiveMenu(false);
-        const $html = document.querySelector("html");
-        if (!($html instanceof HTMLElement)) return;
-
-        $html.style.overflow = "auto";
+        handleOverflow("auto");
       }
       setIsMobile(window.innerWidth <= 780);
     }
@@ -95,10 +92,7 @@ function Header() {
       $appMenu.style.transition = "transform 0.2s cubic-bezier(.32,.72,0,1)";
 
       if (pullDeltaY >= DECISION_THRESHOLD) {
-        const $html = document.querySelector("html");
-        if (!($html instanceof HTMLElement)) return;
-
-        $html.style.overflow = "auto";
+        handleOverflow("auto");
 
         $appMenu.removeAttribute("style");
 
@@ -123,22 +117,13 @@ function Header() {
     }
   };
 
-  const buttonMenuHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const $html = document.querySelector("html");
-    if (!($html instanceof HTMLElement)) return;
-
-    e.preventDefault();
+  const buttonMenuHandler = () => {
+    handleOverflow("hidden");
     setActiveMenu(!activeMenu);
-
-    $html.style.overflow = "hidden";
   };
 
   const onCloseMenu = (e: React.MouseEvent<HTMLElement>) => {
-    const $html = document.querySelector("html");
-    if (!($html instanceof HTMLElement)) return;
-
-    $html.style.overflow = "auto";
-
+    handleOverflow("auto");
     if (isAnimatingMenu) return;
 
     setIsAnimatingMenu(true);
@@ -164,14 +149,21 @@ function Header() {
     });
   };
 
+  const handleOverflow = (type: "auto" | "hidden") => {
+    const $html = document.querySelector("html");
+    if (!($html instanceof HTMLElement)) return;
+
+    $html.style.overflow = type ?? "auto";
+  };
+
   useEffect(() => {
     const $appMenu = document.querySelector("#app_menu");
     const $appMenuClose = document.querySelector("#app_close_menu");
-    const $html = document.querySelector("html");
 
     if (!($appMenu instanceof HTMLElement)) return;
     if (!($appMenuClose instanceof HTMLDivElement)) return;
-    if (!($html instanceof HTMLElement)) return;
+
+    console.log(activeMenu);
 
     if (activeMenu) {
       $appMenu.classList.add("open");
