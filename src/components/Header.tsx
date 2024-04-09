@@ -95,6 +95,11 @@ function Header() {
       $appMenu.style.transition = "transform 0.2s cubic-bezier(.32,.72,0,1)";
 
       if (pullDeltaY >= DECISION_THRESHOLD) {
+        const $html = document.querySelector("html");
+        if (!($html instanceof HTMLElement)) return;
+
+        $html.style.overflow = "auto";
+
         $appMenu.removeAttribute("style");
 
         $appMenu.style.transition = "transform 0.5s cubic-bezier(.32,.72,0,1)";
@@ -309,7 +314,9 @@ function Header() {
           <section
             id="app_menu"
             onMouseDown={onDragMenu}
-            onTouchStart={onDragMenu}
+            onTouchStart={(e) => {
+              onDragMenu(e);
+            }}
           >
             <header className="header">
               <div className="content">
