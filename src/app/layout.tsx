@@ -35,9 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${rubik.variable} ${poppins.variable}`}>
-      <Header />
-      <body>{children}</body>
-      <Footer />
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

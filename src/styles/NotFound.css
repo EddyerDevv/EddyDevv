@@ -1,0 +1,94 @@
+#page_404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100dvh;
+  gap: 0.7rem;
+}
+
+#page_404 > .principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+#page_404 > .principal > .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: rgb(41, 56, 49);
+  color: rgb(198, 222, 211);
+}
+
+#page_404 > .principal > .icon > .svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+#page_404 > .principal > .text {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: var(--font-poppins);
+}
+
+#page_404 > .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+#page_404 > .content > .text {
+  font-size: 1.1rem;
+  font-weight: 400;
+  width: 20rem;
+  text-align: center;
+  color: #a6bdab;
+}
+
+#page_404 > .content > .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+#page_404 > .content > .actions > .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  border: none;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255, 0.1);
+  color: rgb(255, 255, 255, 0.8);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+#page_404 > .content > .actions > .btn:hover {
+  background-color: rgb(255, 255, 255, 0.15);
+  color: rgb(255, 255, 255, 0.9);
+}
+
+#page_404 > .content > .actions > .btn.accent {
+  background-color: rgb(29, 177, 108);
+  color: rgb(255, 255, 255);
+}
+
+#page_404 > .content > .actions > .btn.accent:hover {
+  background-color: rgb(27, 148, 92);
+  color: rgb(255, 255, 255);
+}
