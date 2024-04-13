@@ -7,7 +7,7 @@ function AboutMe() {
   return (
     <main id="app_about">
       <header className="header">
-        <span className="text">About Me</span>
+        <h1 className="text">About Me</h1>
         <svg
           width="24"
           height="24"
@@ -18,6 +18,7 @@ function AboutMe() {
           strokeLinecap="round"
           strokeLinejoin="round"
           className="icon"
+          aria-hidden="true"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
           <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>

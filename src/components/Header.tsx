@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+
 import "@/styles/Header.css";
 
 function Header() {
@@ -65,7 +66,7 @@ function Header() {
       )
         return;
 
-      const translateY = pullDeltaY / 2;
+      const translateY = pullDeltaY / 1.5;
       const maxOpacity = 0.7;
       const opacity =
         maxOpacity - Math.min(maxOpacity, translateY / DECISION_THRESHOLD);

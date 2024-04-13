@@ -1,6 +1,7 @@
 import React from "react";
-import "@/styles/Landing.css";
 import Link from "next/link";
+
+import "@/styles/Landing.css";
 
 function Landing() {
   return (
