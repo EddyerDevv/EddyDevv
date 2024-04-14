@@ -6,7 +6,7 @@ import "@/styles/Skills.css";
 
 function Skills() {
   return (
-    <main id="app_skills">
+    <section id="app_skills">
       <header className="header">
         <span className="text">Skills & Tools</span>
         <svg
@@ -26,7 +26,7 @@ function Skills() {
           <path d="M14 4l-4 16"></path>
         </svg>
       </header>
-      <section id="skills">
+      <div id="skills">
         {skills.map((skill) => {
           return (
             <article className="skill" key={skill.name}>
@@ -59,8 +59,8 @@ function Skills() {
             </article>
           );
         })}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
 

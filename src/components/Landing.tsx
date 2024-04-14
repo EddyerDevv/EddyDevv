@@ -5,8 +5,8 @@ import "@/styles/Landing.css";
 
 function Landing() {
   return (
-    <main id="app_landing">
-      <section className="principal">
+    <section id="app_landing">
+      <div className="principal">
         <p className="welcome" id="welcome">
           Welcome visitor...
         </p>
@@ -62,7 +62,7 @@ function Landing() {
             <span className="text">Github</span>
           </Link>
         </div>
-      </section>
+      </div>
       <div className="icon-down">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ function Landing() {
           <path d="M6 13l6 6"></path>
         </svg>
       </div>
-    </main>
+    </section>
   );
 }
 

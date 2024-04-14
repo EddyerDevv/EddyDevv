@@ -5,7 +5,7 @@ import "@/styles/AboutMe.css";
 
 function AboutMe() {
   return (
-    <main id="app_about">
+    <section id="app_about">
       <header className="header">
         <h1 className="text">About Me</h1>
         <svg
@@ -26,7 +26,7 @@ function AboutMe() {
           <path d="M15 19l2 2l4 -4"></path>
         </svg>
       </header>
-      <section id="about">
+      <div id="about">
         <div className="content">
           <p className="text">
             My name is <span className="resalted">Eddyer Morales</span>,
@@ -64,8 +64,8 @@ function AboutMe() {
             />
           </div>
         </figure>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
 
