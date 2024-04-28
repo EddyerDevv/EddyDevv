@@ -1,185 +1,42 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 import "@/styles/Header.css";
+import MobileMenu from "./MobileMenu";
 
 function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeMenu, setActiveMenu] = useState(false);
-  const [isAnimatingMenu, setIsAnimatingMenu] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    function manageScroll() {
-      const appHeader = document.querySelector("#app_header");
-      if (!(appHeader instanceof HTMLElement)) return;
-
-      if (window.scrollY > 0) appHeader.classList.add("scrolled");
-      else appHeader.classList.remove("scrolled");
-    }
-
     function handleResize() {
-      if (isMobile && activeMenu && window.innerWidth >= 780) {
+      if (isMobile && activeMenu && window.innerWidth >= 780)
         setActiveMenu(false);
-        handleOverflow("auto");
-      }
+
       setIsMobile(window.innerWidth <= 780);
     }
 
     handleResize();
-    manageScroll();
-
-    window.addEventListener("scroll", manageScroll);
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("scroll", manageScroll);
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, [isMobile, activeMenu]);
 
-  const onDragMenu = (e: any) => {
-    const startY = e.pageY ?? e.touches[0].pageY;
-    let pullDeltaY = 0;
-    const DECISION_THRESHOLD = 40;
+  const handleActiveMenu = () => {
+    const appMenu = document.querySelector("#app_header_menu");
 
-    if (isAnimatingMenu) return;
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", onEnd);
+    if (!(appMenu instanceof HTMLElement)) {
+      setActiveMenu(true);
+    } else {
+      appMenu.style.opacity = "0";
 
-    document.addEventListener("touchmove", onMove, { passive: true });
-    document.addEventListener("touchend", onEnd, { passive: true });
-
-    function onMove(e: any) {
-      const currentY = e.pageY ?? e.touches[0].pageY;
-      pullDeltaY = currentY - startY;
-
-      if (pullDeltaY === 0 || pullDeltaY < 0) return;
-
-      const $appMenu = document.querySelector("#app_menu");
-      const $appMenuClose = document.querySelector("#app_close_menu");
-
-      if (
-        !($appMenu instanceof HTMLElement) ||
-        !($appMenuClose instanceof HTMLElement)
-      )
-        return;
-
-      const translateY = pullDeltaY / 1.5;
-      const maxOpacity = 0.7;
-      const opacity =
-        maxOpacity - Math.min(maxOpacity, translateY / DECISION_THRESHOLD);
-
-      $appMenu.style.transform = `translateY(${translateY}px)`;
-      $appMenuClose.style.opacity = `${opacity}`;
-
-      setIsAnimatingMenu(true);
-    }
-
-    function onEnd() {
-      const $appMenu = document.querySelector("#app_menu");
-      const $appMenuClose = document.querySelector("#app_close_menu");
-
-      if (!($appMenu instanceof HTMLElement)) return;
-      if (!($appMenuClose instanceof HTMLDivElement)) return;
-
-      document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseup", onEnd);
-
-      document.removeEventListener("touchmove", onMove);
-      document.removeEventListener("touchend", onEnd);
-
-      $appMenu.style.transition = "transform 0.2s cubic-bezier(.32,.72,0,1)";
-
-      if (pullDeltaY >= DECISION_THRESHOLD) {
-        handleOverflow("auto");
-
-        $appMenu.removeAttribute("style");
-
-        $appMenu.style.transition = "transform 0.5s cubic-bezier(.32,.72,0,1)";
-        $appMenu.style.transform = "translateY(100%)";
-
-        $appMenuClose.style.opacity = "0";
-
-        $appMenu.addEventListener("transitionend", () => {
-          $appMenu.classList.remove("open");
-          setActiveMenu(false);
-        });
-      } else {
-        $appMenu.style.transform = `translateY(0px)`;
-        $appMenuClose.style.opacity = `0.7`;
-      }
-
-      $appMenu.addEventListener("transitionend", async () => {
-        $appMenu.removeAttribute("style");
-        setIsAnimatingMenu(false);
+      appMenu.addEventListener("transitionend", () => {
+        setActiveMenu(false);
       });
     }
   };
-
-  const buttonMenuHandler = () => {
-    handleOverflow("hidden");
-    setActiveMenu(!activeMenu);
-  };
-
-  const onCloseMenu = (e: React.MouseEvent<HTMLElement>) => {
-    handleOverflow("auto");
-    if (isAnimatingMenu) return;
-
-    setIsAnimatingMenu(true);
-    e.preventDefault();
-
-    const $appMenu = document.querySelector("#app_menu");
-    const $appMenuClose = document.querySelector("#app_close_menu");
-
-    if (!($appMenu instanceof HTMLElement)) return;
-    if (!($appMenuClose instanceof HTMLDivElement)) return;
-
-    $appMenu.removeAttribute("style");
-
-    $appMenu.style.transition = "transform 0.5s cubic-bezier(.32,.72,0,1)";
-    $appMenu.style.transform = "translateY(100%)";
-
-    $appMenuClose.style.opacity = "0";
-
-    $appMenu.addEventListener("transitionend", () => {
-      $appMenu.classList.remove("open");
-      setActiveMenu(false);
-      setIsAnimatingMenu(false);
-    });
-  };
-
-  const handleOverflow = (type: "auto" | "hidden") => {
-    const $html = document.querySelector("html");
-    if (!($html instanceof HTMLElement)) return;
-
-    $html.style.overflow = type ?? "auto";
-  };
-
-  useEffect(() => {
-    const $appMenu = document.querySelector("#app_menu");
-    const $appMenuClose = document.querySelector("#app_close_menu");
-
-    if (!($appMenu instanceof HTMLElement)) return;
-    if (!($appMenuClose instanceof HTMLDivElement)) return;
-
-    console.log(activeMenu);
-
-    if (activeMenu) {
-      $appMenu.classList.add("open");
-      $appMenuClose.classList.add("open");
-
-      $appMenu.style.transition = "bottom 0.5s cubic-bezier(.32,.72,0,1)";
-
-      setTimeout(() => {
-        $appMenu.addEventListener("transitionend", () => {
-          $appMenu.removeAttribute("style");
-          $appMenuClose.removeAttribute("style");
-        });
-      }, 10);
-    }
-  }, [activeMenu]);
 
   return (
     <>
@@ -194,66 +51,14 @@ function Header() {
           </div>
           {!isMobile && (
             <>
-              <div className="spacer"></div>
               <nav className="navigate">
                 <Link className="link" href="/" title="Home">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="icon"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                    <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
-                  </svg>
                   <span className="text">Home</span>
                 </Link>
                 <Link className="link" href="/projects" title="Projects">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="icon"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 4m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z"></path>
-                    <path d="M4 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                    <path d="M14 12l6 0"></path>
-                    <path d="M14 16l6 0"></path>
-                    <path d="M14 20l6 0"></path>
-                  </svg>
                   <span className="text">Projects</span>
                 </Link>
                 <Link className="link" href="/blog" title="Blog">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="icon"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M11 21h-5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3.5"></path>
-                    <path d="M16 3v4"></path>
-                    <path d="M8 3v4"></path>
-                    <path d="M4 11h11"></path>
-                    <path d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"></path>
-                  </svg>
                   <span className="text">Blog</span>
                 </Link>
               </nav>
@@ -279,109 +84,40 @@ function Header() {
             </svg>
           </Link>
           {isMobile && (
-            <button className="btn accent menu" onClick={buttonMenuHandler}>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="icon"
+            <div className="mobile_menu">
+              <button
+                className="btn accent menu"
+                onClick={handleActiveMenu}
+                ref={menuButtonRef}
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M4 6l16 0"></path>
-                <path d="M4 12l16 0"></path>
-                <path d="M4 18l16 0"></path>
-              </svg>
-            </button>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="icon"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M4 6l16 0"></path>
+                  <path d="M4 12l16 0"></path>
+                  <path d="M4 18l16 0"></path>
+                </svg>
+              </button>
+              {activeMenu && (
+                <MobileMenu
+                  activeMenu={activeMenu}
+                  setActiveMenu={setActiveMenu}
+                  menuButtonRef={menuButtonRef}
+                />
+              )}
+            </div>
           )}
         </section>
       </header>
-
-      {isMobile && activeMenu && (
-        <>
-          <div id="app_close_menu" onClick={onCloseMenu}></div>
-          <section
-            id="app_menu"
-            onMouseDown={onDragMenu}
-            onTouchStart={(e) => {
-              onDragMenu(e);
-            }}
-          >
-            <header className="header">
-              <div className="content">
-                <span className="decorator"></span>
-              </div>
-              <span className="text">Menu</span>
-            </header>
-            <nav className="navigate">
-              <Link className="link" href="/" title="Home">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                  <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
-                </svg>
-                <span className="text">Home</span>
-              </Link>
-              <Link className="link" href="/projects" title="Projects">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M4 4m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z"></path>
-                  <path d="M4 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path>
-                  <path d="M14 12l6 0"></path>
-                  <path d="M14 16l6 0"></path>
-                  <path d="M14 20l6 0"></path>
-                </svg>
-                <span className="text">Projects</span>
-              </Link>
-              <Link className="link" href="/blog" title="Blog">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M11 21h-5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3.5"></path>
-                  <path d="M16 3v4"></path>
-                  <path d="M8 3v4"></path>
-                  <path d="M4 11h11"></path>
-                  <path d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"></path>
-                </svg>
-                <span className="text">Blog</span>
-              </Link>
-            </nav>
-          </section>
-        </>
-      )}
     </>
   );
 }

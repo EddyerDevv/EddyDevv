@@ -11,6 +11,7 @@
   --text-accent-2: rgb(107, 255, 149);
   --text-primary: rgb(255, 255, 255);
 
+  --header-border-color: rgb(255, 255, 255, 0.2);
   --header-spacer-color: rgb(255, 255, 255, 0.1);
   --header-link-color: rgb(223, 223, 223);
   --header-action-text-color: rgb(255, 255, 255);
